@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <title>Angular JS</title>
+</head>
+<body>
+    Busca: <input type="search" ng-model="busca">
+
+    <div ng-controller="ListaController">
+        <ul>
+            <li ng-repeat="pessoa in pessoas | filter:busca">
+                {{pessoa.nome}}, <b>{{pessoa.cidade}}</b>
+            </li>
+        </ul>
+    </div>
+
+<script>
+    angular.module('app', [])
+        .controller('ListaController', function($scope){
+            $scope.pessoas = [
+                {nome: "Maria", cidade: "São Paulo"},
+                {nome: "João",  cidade: "Salvador"},
+                {nome: "Pedro", cidade: "Curitiba"},
+                {nome: "José",  cidade: "Rio"}
+            ];
+        });
+</script>
+</body>
+</html>

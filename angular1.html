@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-ap="app">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <title></title>
+</head>
+<body>
+
+    <div ng-controller="AppController">
+
+        <h1>{{nome}}, {{idade * 10}}</h1>
+
+    </div>
+
+<script>
+
+    angular.module('app', [])
+        .controller('AppController', function($scope){
+            $scope.nome  = "wesley";
+            $scope.idade = 28;
+        });
+
+</script>
+
+</body>
+</html>
