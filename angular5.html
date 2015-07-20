@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <title>Angular JS</title>
+</head>
+<body>
+Busca: <input type="search" ng-model="busca">
+
+<div ng-controller="ListaController">
+    <ul>
+        <li ng-repeat="pessoa in pessoas | filter:busca">
+            {{pessoa.nome}}, <b>{{pessoa.cidade}}</b> <button ng-click="remover($index)">Remover</button>
+        </li>
+    </ul>
+
+    <div> Total: <b>{{pessoas.length}}</b></div><br>
+
+    <div>
+        Nome:   <input type="text" ng-model="vNome"><br>
+        Cidade: <input type="text" ng-model="vCidade"><br>
+        <button ng-click="adicionar()">Adicionar na lista</button>
+    </div>
+</div>
+
+<script>
+    angular.module('app', [])
+        .controller('ListaController', function($scope){
+            $scope.pessoas = [
+                {nome: "Maria", cidade: "São Paulo"},
+                {nome: "João",  cidade: "Salvador"},
+                {nome: "Pedro", cidade: "Curitiba"},
+                {nome: "José",  cidade: "Rio"}
+            ];
+
+            $scope.adicionar = function(){
+                $scope.pessoas.push(
+                    { nome: $scope.vNome, cidade: $scope.vCidade}
+                );
+
+                $scope.vNome   = "";
+                $scope.vCidade = "";
+            };
+
+            $scope.remover = function(index){
+                $scope.pessoas.splice(index, 1);
+            };
+        })
+</script>
+</body>
+</html>
