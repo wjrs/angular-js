@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular JS - Pessoas</title>
+</head>
+<body>
+
+<div ng-controller="AppController">
+
+    <!--<button son-click="executa()">Click</button>-->
+    <son-clique click="executa()">Clique</son-clique>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
+<script>
+
+    angular.module('App', [])
+            .directive('sonClick', function(){
+                return {
+                    restrict: 'A',
+                    link: function ($scope, element, attrs) {
+                        element.bind('click', function(){
+                            $scope.$eval(attrs.sonClick);
+                        })
+                    }
+                };
+            })
+            .directive('sonClique', function(){
+                return {
+                    restrict: 'E',
+                    replace: true,
+                    transclude: true,
+                    template: '<button ng-transclude></button>',
+                    link: function ($scope, element, attrs) {
+                        element.bind('click', function(){
+                            $scope.$eval(attrs.click);
+                        })
+                    }
+                };
+            })
+            .controller('AppController', function($scope){
+                $scope.executa = function(){
+                    alert('Diretiva click');
+                }
+            })
+    ;
+
+</script>
+</body>
+</html>

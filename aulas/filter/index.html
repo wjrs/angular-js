@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular JS - Pessoas</title>
+</head>
+<body>
+
+<div ng-controller="AppController">
+
+    <h1>{{frase1 | case: 'lower'}}</h1>
+    <h1>{{frase2 | upper}}</h1>
+    <h1>{{frase3 | lower}}</h1>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
+<script>
+
+    angular.module('App', [])
+            .controller('AppController', function($scope){
+               $scope.frase1 = "Minha frase com filtro case";
+               $scope.frase2 = "Minha frase com filtro upper";
+               $scope.frase3 = "Minha frase com filtro lower";
+            })
+            .filter('upper', function(){
+                return function(input){
+                    return input.toUpperCase();
+                }
+            })
+            .filter('lower', function(){
+                return function(input){
+                    return input.toLowerCase();
+                }
+            })
+            .filter('case', function(){
+                return function(input, tipo){
+                    if(tipo==='upper') {
+                        return input.toUpperCase();
+                    } else {
+                        return input.toLowerCase();
+                    }
+
+                }
+            })
+    ;
+
+</script>
+</body>
+</html>
